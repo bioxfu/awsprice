@@ -1,0 +1,5 @@
+Name: AWS price
+Description: An Shiny addin for searching AWS EC2 price
+Binding: awsprice
+Interactive: true
+

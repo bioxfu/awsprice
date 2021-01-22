@@ -1,16 +1,22 @@
 Package: awsprice
-Title: What the Package Does (One Line, Title Case)
+Title: An Shiny addin for searching AWS EC2 price
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Xing",
+           family = "Fu",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "bio.xfu@qq.com")
+Description: Download and extract EC2 pricing table from web page.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    dplyr,
+    miniUI,
+    rvest,
+    shiny,
+    shinycssloaders,
+    xml2,
+    DT
