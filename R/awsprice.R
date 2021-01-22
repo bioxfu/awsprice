@@ -4,6 +4,7 @@
 #' @import shiny
 #' @import shinycssloaders
 #' @import miniUI
+#' @import stringi
 awsprice <- function() {
 
   # Our ui will be a simple gadget page, which
@@ -47,9 +48,9 @@ awsprice <- function() {
       selectInput("ram", label = 'Choose Memory (GB)',
                   choices = ram_n)
     })
-
+    # stringi::stri_escape_unicode("全部")
     output$Type_Controls <- renderUI({
-      n <- c('全部', unique(tb()$Type_cn))
+      n <- c(stri_unescape_unicode('\\u5168\\u90e8'), unique(tb()$Type_cn))
       type_n <- as.list(n)
       names(type_n) <- n
       selectInput("type", label = 'Choose Type',
@@ -57,7 +58,7 @@ awsprice <- function() {
     })
 
     output$Region_Controls <- renderUI({
-      n <- c('全部', unique(tb()$Region))
+      n <- c(stri_unescape_unicode('\\u5168\\u90e8'), unique(tb()$Region))
       region_n <- as.list(n)
       names(region_n) <- n
       selectInput("region", label = 'Choose Region',
@@ -73,10 +74,10 @@ awsprice <- function() {
       if (input$ram > 0) {
         tbl <- tbl %>% filter(Memory == input$ram)
       }
-      if (input$type != '全部') {
+      if (input$type != stri_unescape_unicode('\\u5168\\u90e8')) {
         tbl <- tbl %>% filter(Type_cn == input$type)
       }
-      if (input$region != '全部') {
+      if (input$region != stri_unescape_unicode('\\u5168\\u90e8')) {
         tbl <- tbl %>% filter(Region == input$region)
       }
 
