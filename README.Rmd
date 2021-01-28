@@ -13,50 +13,60 @@ knitr::opts_chunk$set(
 )
 ```
 
-# awsprice
-
+# awsprice 
 <!-- badges: start -->
+```{r pressure, echo=FALSE, out.width = '20%'}
+knitr::include_graphics("inst/img/hex-awsprice.png")
+```
 <!-- badges: end -->
 
-The goal of awsprice is to search the price of AWS EC2 Linux in [China](https://www.amazonaws.cn/ec2/pricing/ec2-linux-pricing/). 
+> The goal of awsprice is to search the price of AWS EC2 Linux in [China](https://www.amazonaws.cn/ec2/pricing/ec2-linux-pricing/). 
+
+在选择 AWS EC2 实例类型的时候，价格是我们十分关心的一个因素，但是 AWS 的控制台并没有自动显示价格信息。我们只能在一个静态网页上寻找感兴趣的实例的价格。由于没有查询和排序的功能，使用起来不是很方便。
 
 ```{r echo=FALSE, out.width = '80%'}
 knitr::include_graphics("man/figures/README-0.png")
 ```
 
-## Installation
+awsprice 是一个基于 [R](http://www.r-project.org/) 语言开发的工具，它可以在 AWS EC2 Linux 的定价网页上提取价格信息，并保存为数据框，供后续查询和分析使用。同时，它也是一个 [RStudio](http://www.rstudio.org/) 的插件，可以通过图形界面来使用。
 
-You can install the released version of awsprice from [GitHub](https://github.com/bioxfu/awsprice) with:
+## 安装方法
+
+在 RStudio 中输入以下命令：
 
 ``` r
 devtools::install_github("bioxfu/awsprice")
 ```
 
-## Example
-#### 1. To use awsprice as a RStudio addin:
-- Find **AWS price** in *Addins* pull-down menu
+如果是 Windows 用户，请先安装 [Rtools](https://mirrors.tuna.tsinghua.edu.cn/CRAN/) 后再执行上面的命令。
+
+## 使用方法
+#### 1. 作为 RStudio 的插件来使用:
+- 首先在 *Addins* 的下拉菜单中选择 **AWS price** 插件
 
 ```{r echo=FALSE, out.width = '50%'}
 knitr::include_graphics("man/figures/README-1.png")
 ```
 <hr>
 
-- Wait a minute to download and extract price table
+- 由于需要在线下载和解析网页，所以请稍作等待
 
 ```{r echo=FALSE, out.width = '50%'}
 knitr::include_graphics("man/figures/README-2.png")
 ```
 <hr>
 
-- Start to search the EC2 you need
+- 接下来就可以选择你感兴趣的 EC2 实例了
 
 ```{r echo=FALSE, out.width = '50%'}
 knitr::include_graphics("man/figures/README-3.png")
 ```
 <hr>
 
-#### 2. To save the AWS EC2 price table into a data.frame:
+#### 2. 作为普通的 R 函数使用：
+可以用下面的方法保存网页上的价格表。
 
 ``` r
 tb <- awsprice::fetch_price_table()
 ```
+
